@@ -1,33 +1,37 @@
-import { useState } from 'react'
+// src/App.jsx
+import { Routes, Route, Link } from 'react-router-dom'
 import Home from './components/Home'
-import Projects from './components/Projects'
-import Contact from './components/Contact'
+import ProjectDetail from './components/ProjectDetail'
 import './App.css'
 
 function App() {
-  const [page, setPage] = useState('home')
-
-  const renderPage = () => {
-    if (page === 'home') return <Home onNavigate={setPage} />
-    if (page === 'projects') return <Projects />
-    if (page === 'contact') return <Contact />
-    return null
-  }
-
   return (
     <div className="app">
+      {/* 顶部导航（现在其实只有一个 Home 链接，也可以写成 Logo） */}
       <header className="nav">
-        <div className="logo">Zhuoyang Pei</div>
-        <nav>
-          <button onClick={() => setPage('home')}>Home</button>
-          <button onClick={() => setPage('projects')}>Projects</button>
-          <button onClick={() => setPage('contact')}>Contact</button>
-        </nav>
+        <Link to="/" className="logo">
+          Zhuoyang Pei
+        </Link>
       </header>
 
-      <main>
-        {renderPage()}
-      </main>
+      {/* 路由出口 */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects/:slug" element={<ProjectDetail />} />
+        {/* 以后想加 404，也可以： */}
+        {/* <Route path="*" element={<NotFound />} /> */}
+      </Routes>
+
+      {/* Footer：放联系信息 */}
+      <footer className="footer">
+        <p>Available for XR / Interaction Design & Frontend internships.</p>
+        <p>
+          Email: <a href="mailto:zhuoyang.pei@outlook.com">zhuoyang.pei@outlook.com</a> ·{' '}
+          <a href="https://github.com/FreyProcyon" target="_blank" rel="noreferrer">
+            GitHub
+          </a>
+        </p>
+      </footer>
     </div>
   )
 }
