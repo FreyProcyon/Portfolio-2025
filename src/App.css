@@ -192,3 +192,188 @@
     grid-column: span 4;
   }
 }
+
+.project-body h1,
+.project-body h2,
+.project-body h3 {
+  line-height: 1.25;
+  margin: 18px 0 10px;
+}
+
+.project-body p {
+  margin: 10px 0;
+  color: rgba(229, 231, 235, 0.9);
+}
+
+.project-body ul,
+.project-body ol {
+  margin: 10px 0 10px 20px;
+}
+
+.project-body li {
+  margin: 6px 0;
+}
+
+.project-body a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.project-body code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.95em;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.project-body pre code {
+  display: block;
+  padding: 14px;
+  overflow: auto;
+}
+
+/* ============ Carousel ============ */
+.carousel {
+  margin: 20px 0 10px;
+}
+
+.carousel-shell {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(17, 24, 39, 0.75);
+  box-shadow: var(--shadow);
+}
+
+.carousel-media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.carousel-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.01);
+  transition: transform 260ms ease, filter 260ms ease;
+}
+
+.carousel-media:hover img {
+  transform: scale(1.04);
+  filter: brightness(1.05);
+}
+
+.carousel-content {
+  padding: 16px 16px 14px;
+}
+
+.carousel-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.carousel-title {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.carousel-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.icon-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(96, 165, 250, 0.35);
+}
+
+.carousel-desc {
+  margin: 10px 0 12px;
+  color: var(--muted);
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding-top: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+}
+
+.dot.active {
+  background: rgba(96, 165, 250, 0.7);
+  border-color: rgba(96, 165, 250, 0.6);
+}
+
+/* tags 通用（轮播 + 卡片共用） */
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  font-size: 12px;
+  color: rgba(229, 231, 235, 0.85);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+/* ============ Project cards w/ cover ============ */
+.project-card {
+  padding: 0; /* 之前 card padding 是 16px，现在交给 card-body */
+  overflow: hidden;
+}
+
+.card-cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.card-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 260ms ease, filter 260ms ease;
+}
+
+.project-card:hover .card-cover img {
+  transform: scale(1.05);
+  filter: brightness(1.05);
+}
+
+.card-body {
+  padding: 14px 16px 16px;
+}
