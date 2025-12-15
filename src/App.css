@@ -1,40 +1,12 @@
 /* src/App.css */
 
+/* ================== App Layout ================== */
 .app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* 顶部导航 */
-.nav {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  backdrop-filter: blur(10px);
-  background: rgba(11, 15, 23, 0.6);
-  border-bottom: 1px solid var(--border);
-}
-
-.nav-inner {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 16px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo {
-  font-weight: 700;
-  letter-spacing: 0.2px;
-}
-
-.logo:hover {
-  color: var(--accent);
-}
-
-/* 主体内容容器（Home 和 Detail 都用同一个容器宽度） */
 .page {
   width: 100%;
   flex: 1;
@@ -46,52 +18,358 @@
   padding: 28px 20px 36px;
 }
 
-/* Hero */
-.hero {
-  padding: 28px 0 18px;
+/* ================== Top Pill Nav (KEEP THIS) ================== */
+/* ✅ 解决 top 问题：sticky 必须有 top:0 才会吸顶 */
+.topBar{
+  position: fixed;
+  top: 14px;           /* 悬浮在 hero 上方 */
+  left: 0;
+  width: 100%;
+  z-index: 30;
+
+  display: flex;
+  justify-content: center;
+  pointer-events: none; /* 可选：防止挡 hero 交互 */
 }
 
-.hero h1 {
-  margin: 0 0 8px;
-  font-size: 34px;
-  line-height: 1.15;
+.topPill {
+  width: min(1080px, calc(100% - 24px));
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  pointer-events: auto;
+
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  backdrop-filter: blur(10px);
 }
 
-.hero p {
-  margin: 0;
+.brand {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.topLinks {
+  display: flex;
+  gap: 14px;
   color: var(--muted);
-  max-width: 70ch;
+  font-size: 14px;
 }
 
-/* Projects 区域 */
+.topLinks a:hover {
+  color: var(--text);
+}
+
+/* ================== Hero (NEW SYSTEM) ================== */
+/* ✅ Hero 要全宽，不受 container 限制（你 Home.jsx 已经把 Hero 移出 container 了） */
+.heroBleed {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* ✅ Hero 从最顶开始，但要扣掉 topBar 的高度（大概 14 padding + pill 高度） */
+.heroFrame{
+  position: relative;
+  width: 100%;
+  height: 100vh;   /* ✅ 就这么简单 */
+
+  border: none;    /* 先去掉边框，视觉更“大片” */
+  background: var(--panel);
+  overflow: hidden;
+}
+
+
+/* 背景大字：建议别太抢主体 */
+.heroBgText {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  pointer-events: none;
+  opacity: 0.3; 
+}
+
+.bgLine {
+  font-weight: 700;
+  font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.06em;
+  font-size: clamp(180px, 28vw, 280px);
+  white-space: nowrap;
+  padding-left: 24px;
+}
+
+.heroPortrait {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.portraitCard {
+  width: min(650px, 80vw);
+  aspect-ratio: 3 / 4;
+
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.portraitCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.heroMeta {
+  position: absolute;
+  z-index: 2;
+  padding: 18px 20px;
+}
+
+.heroMeta.left {
+  top: 0;
+  left: 0;
+}
+
+.heroMeta.right {
+  bottom: 0;
+  right: 0;
+  text-align: right;
+}
+
+.kicker {
+  margin-top: 58px;
+  font-weight: 650;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+}
+
+.kickerMuted {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.scrollHint {
+  color: var(--muted);
+  font-size: 22px;
+  font-weight: 650;
+}
+
+/* ================== Section Title ================== */
 .section-title {
   margin: 26px 0 14px;
   font-size: 18px;
   letter-spacing: 0.2px;
 }
 
-/* 卡片网格：桌面多列、移动单列 */
+/* ================== Carousel ================== */
+/* === Featured Carousel Section: full-width dark block === */
+.carousel {
+  /* ✅ 全宽黑底容器 */
+  width: 100%;
+  background: #0b0b0b;
+  color: rgba(255, 255, 255, 0.92);
+
+  /* ✅ 上下留白：让它像“整段专区” */
+  padding: 56px 0 46px;
+
+  /* ✅ 和其他 section 拉开距离（可选） */
+  margin: 0;
+}
+
+/* 让内部内容保持 1080 阅读宽度（原本 max-width 在 .carousel 上，现在挪到 shell） */
+.carousel-shell {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  /* ❌ 去掉卡片感 */
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+/* 图片：仍然是 16:9，但改成更“高级”的呈现 */
+.carousel-media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 7 / 5;
+  overflow: hidden;
+
+  /* ✅ 图片容器做圆角（不是卡片） */
+  border-radius: 18px;
+}
+
+/* 图片风格：更暗一点更像高级作品集，hover 微提升亮度 */
+.carousel-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  transform: scale(1.01);
+  transition: transform 260ms ease, filter 260ms ease;
+  filter: brightness(0.92) contrast(1.03);
+}
+
+.carousel-media:hover img {
+  transform: scale(1.03);
+  filter: brightness(1.02) contrast(1.05);
+}
+
+/* 文字区域：改成更清晰的两栏节奏 */
+.carousel-content {
+  padding: 18px 2px 0;
+}
+
+.carousel-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.carousel-title {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.96);
+}
+
+.carousel-controls {
+  display: flex;
+  gap: 10px;
+}
+
+/* 控制按钮：黑底上要更“轻”，用描边而不是白底按钮 */
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.92);
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.icon-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.34);
+}
+
+/* 描述文字：白字的“次级层级” */
+.carousel-desc {
+  margin: 10px 0 0;
+  color: rgba(255, 255, 255, 0.70);
+  max-width: 72ch;
+}
+
+/* dots：黑底下改成更低调 */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding-top: 16px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.10);
+  cursor: pointer;
+}
+
+.dot.active {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(255, 255, 255, 0.60);
+}
+
+/* tags（如果你轮播里也显示 tag-row/tag）：黑底版本 */
+.carousel .tag {
+  color: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* tags 通用（轮播 + 卡片共用） */
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.85);
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.06);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+/* ================== Projects Grid + Card ================== */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 14px;
 }
 
-/* 默认每张卡占 12 列（移动端一列） */
+/* ✅ 只保留一次 project-card 定义，避免 padding 冲突 */
 .project-card {
   grid-column: span 12;
-  background: rgba(17, 24, 39, 0.75);
+  background: #fff;
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 16px;
+  overflow: hidden;
+
   box-shadow: var(--shadow);
-  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+  transition: transform 160ms ease, border-color 160ms ease;
 }
 
 .project-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(96, 165, 250, 0.35);
-  background: rgba(17, 24, 39, 0.9);
+  transform: translateY(-2px);
+  border-color: rgba(0, 0, 0, 0.22);
+}
+
+.card-cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 7 / 5;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.card-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 260ms ease, filter 260ms ease;
+}
+
+.project-card:hover .card-cover img {
+  transform: scale(1.04);
+  filter: brightness(1.05);
+}
+
+.card-body {
+  padding: 14px 16px 16px;
 }
 
 .project-card h3 {
@@ -106,24 +384,39 @@
 }
 
 .meta {
-  margin: 0 0 12px;
+  padding-top: 12px;
   font-size: 13px;
-  color: rgba(229, 231, 235, 0.75);
+  color: var(--muted);
 }
 
 .project-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--accent);
-  font-weight: 600;
+  color: var(--text);
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .project-link:hover {
-  color: var(--accent-2);
+  opacity: 0.85;
 }
 
-/* Detail 页面排版 */
+/* 响应式：>= 720px 两列，>= 980px 三列 */
+@media (min-width: 720px) {
+  .project-card {
+    grid-column: span 6;
+  }
+}
+
+@media (min-width: 980px) {
+  .project-card {
+    grid-column: span 4;
+  }
+}
+
+/* ================== Detail Page ================== */
 .project-detail-header {
   padding: 18px 0 10px;
 }
@@ -137,62 +430,23 @@
 .back-link {
   display: inline-flex;
   margin-top: 12px;
-  color: rgba(229, 231, 235, 0.8);
+  color: var(--muted);
 }
 
 .back-link:hover {
-  color: var(--accent);
+  color: var(--text);
 }
 
+/* Detail 的正文：你现在是深色块，如果想统一浅色可后面再改 */
 .project-body {
   margin-top: 18px;
   padding: 18px;
-  background: rgba(17, 24, 39, 0.65);
+  background: rgba(255, 255, 255, 0.75);
   border: 1px solid var(--border);
   border-radius: 16px;
 }
 
-/* Footer */
-.footer {
-  border-top: 1px solid var(--border);
-  background: rgba(11, 15, 23, 0.6);
-}
-
-.footer-inner {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 18px 20px;
-  color: rgba(229, 231, 235, 0.75);
-  font-size: 14px;
-}
-
-.footer a {
-  color: rgba(229, 231, 235, 0.85);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.footer a:hover {
-  color: var(--accent);
-}
-
-/* 响应式：>= 720px 变成两列卡片，>= 980px 变三列 */
-@media (min-width: 720px) {
-  .hero h1 {
-    font-size: 40px;
-  }
-
-  .project-card {
-    grid-column: span 6;
-  }
-}
-
-@media (min-width: 980px) {
-  .project-card {
-    grid-column: span 4;
-  }
-}
-
+/* Markdown typography */
 .project-body h1,
 .project-body h2,
 .project-body h3 {
@@ -202,7 +456,7 @@
 
 .project-body p {
   margin: 10px 0;
-  color: rgba(229, 231, 235, 0.9);
+  color: rgba(0, 0, 0, 0.85);
 }
 
 .project-body ul,
@@ -215,7 +469,7 @@
 }
 
 .project-body a {
-  color: var(--accent);
+  color: var(--text);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -223,7 +477,7 @@
 .project-body code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   font-size: 0.95em;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.06);
   padding: 2px 6px;
   border-radius: 6px;
 }
@@ -234,146 +488,26 @@
   overflow: auto;
 }
 
-/* ============ Carousel ============ */
-.carousel {
-  margin: 20px 0 10px;
+/* ================== Footer ================== */
+.footer {
+  border-top: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.7);
 }
 
-.carousel-shell {
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  overflow: hidden;
-  background: rgba(17, 24, 39, 0.75);
-  box-shadow: var(--shadow);
-}
-
-.carousel-media {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-}
-
-.carousel-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1.01);
-  transition: transform 260ms ease, filter 260ms ease;
-}
-
-.carousel-media:hover img {
-  transform: scale(1.04);
-  filter: brightness(1.05);
-}
-
-.carousel-content {
-  padding: 16px 16px 14px;
-}
-
-.carousel-title-row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.carousel-title {
-  margin: 0;
-  font-size: 18px;
-  line-height: 1.2;
-}
-
-.carousel-controls {
-  display: flex;
-  gap: 8px;
-}
-
-.icon-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--text);
-  cursor: pointer;
-  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
-}
-
-.icon-btn:hover {
-  transform: translateY(-1px);
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(96, 165, 250, 0.35);
-}
-
-.carousel-desc {
-  margin: 10px 0 12px;
+.footer-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 18px 20px;
   color: var(--muted);
+  font-size: 14px;
 }
 
-.carousel-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  padding-top: 10px;
+.footer a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.08);
-  cursor: pointer;
-}
-
-.dot.active {
-  background: rgba(96, 165, 250, 0.7);
-  border-color: rgba(96, 165, 250, 0.6);
-}
-
-/* tags 通用（轮播 + 卡片共用） */
-.tag-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.tag {
-  font-size: 12px;
-  color: rgba(229, 231, 235, 0.85);
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.05);
-  padding: 4px 10px;
-  border-radius: 999px;
-}
-
-/* ============ Project cards w/ cover ============ */
-.project-card {
-  padding: 0; /* 之前 card padding 是 16px，现在交给 card-body */
-  overflow: hidden;
-}
-
-.card-cover {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  border-bottom: 1px solid var(--border);
-}
-
-.card-cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 260ms ease, filter 260ms ease;
-}
-
-.project-card:hover .card-cover img {
-  transform: scale(1.05);
-  filter: brightness(1.05);
-}
-
-.card-body {
-  padding: 14px 16px 16px;
+.footer a:hover {
+  opacity: 0.85;
 }
