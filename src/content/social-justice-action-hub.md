@@ -10,6 +10,7 @@
 - 帮助年轻用户获取**气候行动、反种族歧视、性别平权**等左翼社会议题的最新资讯  
 - 通过**行动指南和线上资源**鼓励他们参与真实世界的社会行动  
 - 兼顾 **多元与包容（Diversity & Inclusion）** 与 **无障碍（Accessibility, WCAG 2.2）** 设计理念
+![sjah](../images/social-justice-action-hub.png)
 
 这是我最早一批从**需求分析 → UX 设计 → 视觉规范 → HTML/CSS/JS 实现**完整走完流程的个人网站项目之一。
 

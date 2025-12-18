@@ -35,8 +35,8 @@ Vision Bright 的目标是：
   - 设计基于 **眼动、手势与语音** 的组合交互流程  
   - 定义“凝视选择（gaze selection）”“眨眼拍照（blink to capture）”“微手势确认（micro-gesture confirm）”等核心交互模式
 - **高保真原型与前端开发（Hi-fi Prototype & Front-end）**
-  - 使用 Figma / 前端编码制作 **高保真交互原型**  
-  - 在 **React.js** 基础上实现网页端原型，模拟智能眼镜的 HUD 视图与交互逻辑
+  - 使用 Figma 制作 **高保真原型**  
+  - 基于 **React + vite** 实现网页端可交互原型，模拟智能眼镜的 HUD 视图与交互逻辑
 - **设计文档撰写与 HCI 原则落地**
   - 撰写设计方案文档，系统化整理用户需求、交互模型与设计合理性  
   - 确保界面设计符合 **人机交互（HCI）原则** 与基本 **无障碍（Accessibility）** 要求  

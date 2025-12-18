@@ -18,6 +18,8 @@
 3. 个人顶薪球员气泡图  
 4. 国家–位置人才流向 Sankey 图  
 
+![stereotype](../images/stereotypes-in-football.jpg)
+
 ---
 
 ## 👨‍💻 我的职责（My Role）
