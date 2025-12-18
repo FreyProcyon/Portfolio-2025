@@ -7,7 +7,7 @@ const n=`# 月球建造模拟 – 3D 风格 VR 建模工具（个人项目）\r
 ---\r
 \r
 ## 🧭 项目概览（Project Overview）\r
-![lunar-construction-simulator]( /images/lunar-construction-simulator.png)\r
+![lunar-construction-simulator](/images/lunar-construction-simulator.png)\r
 \r
 **月球建造模拟（Lunar Construction Simulator）** 是一个运行在 **Meta Quest 3** 上的沉浸式 VR 建模工具，灵感来自 Rhino/CAD 的建模流程，面向未来 **月球工程与远程建造** 场景。\r
 \r
@@ -57,7 +57,7 @@ const n=`# 月球建造模拟 – 3D 风格 VR 建模工具（个人项目）\r
 - 将 Rhino/CAD 式建模流程迁移到沉浸式 VR 场景中，让“**建 → 看 → 改**”在空间里自然发生  \r
 - 通过 **网格吸附 + 预览放置** 降低错误成本，帮助非建模专业的用户也能稳定搭建结构  \r
 - 保持操作负担在“**少按钮、强反馈**”的水平，支持 10–15 分钟内完成上手  \r
-![lunar-construction-simulator]( /images/lunar1.png)\r
+![lunar-construction-simulator](/images/lunar1.png)\r
 ---\r
 \r
 ## 🧩 核心功能与交互系统（Core Features & Interactions）\r
