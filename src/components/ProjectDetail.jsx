@@ -76,11 +76,17 @@ function ProjectDetail() {
             // ✅ 1) 修复图片路径：/images/* -> BASE_URL + images/*
             img({ src = '', alt = '', ...props }) {
               const base = import.meta.env.BASE_URL
-              const fixedSrc =
-                src.startsWith('/images/') ? `${base}${src.slice(1)}` : src
-        
+            
+              // 统一把各种写法都归一到 /Portfolio-2025/images/xxx
+              let s = src.trim()
+              if (s.startsWith('../images/')) s = 'images/' + s.slice('../images/'.length)
+              if (s.startsWith('./images/')) s = 'images/' + s.slice('./images/'.length)
+              if (s.startsWith('/images/')) s = 'images/' + s.slice('/images/'.length)
+            
+              const fixedSrc = s.startsWith('images/') ? `${base}${s}` : s
               return <img src={fixedSrc} alt={alt} loading="lazy" {...props} />
-            },
+            }
+            ,
         
             // ✅ 2) 链接分流：站内路由 / 资源 / 外链
             a({ href, children, ...props }) {

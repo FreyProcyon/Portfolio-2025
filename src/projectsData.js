@@ -39,7 +39,7 @@ export const projects = [
       '围绕 UQ Lakes 公交站候车体验设计的团队协作地砖游戏，用互动游戏增进弱社交，同时通过全场变红和屏幕提示防止错过巴士。',
     year: '2025',
     tags: ['React native', 'Expo', 'Javascript'],
-    mdFile: 'WearWell.md',
+    mdFile: 'step-together.md',
     cover: stepCover,
   },
   {
