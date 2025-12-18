@@ -1,1 +1,1 @@
-[作品集 PDF](../pdfs/Portfolio.pdf)
+[作品集 PDF](./pdfs/Portfolio.pdf)
