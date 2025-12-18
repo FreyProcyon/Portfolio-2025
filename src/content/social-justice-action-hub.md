@@ -9,7 +9,7 @@
 
 - 帮助年轻用户获取**气候行动、反种族歧视、性别平权**等左翼社会议题的最新资讯  
 - 通过**行动指南和线上资源**鼓励他们参与真实世界的社会行动  
-- 兼顾 **多元与包容（Diversity & Inclusion）** 与 **无障碍（Accessibility, WCAG 2.2）** 设计理念 :contentReference[oaicite:0]{index=0}  
+- 兼顾 **多元与包容（Diversity & Inclusion）** 与 **无障碍（Accessibility, WCAG 2.2）** 设计理念
 
 这是我最早一批从**需求分析 → UX 设计 → 视觉规范 → HTML/CSS/JS 实现**完整走完流程的个人网站项目之一。
 
@@ -20,7 +20,7 @@
 - **独立设计与开发**整套网站原型与静态实现（无框架，纯 HTML/CSS/JavaScript）
 - 撰写 **Website Design Proposal** & **Implementation Rationale**，从客户简报、用户分析到实现偏差说明   
 - 负责：
-  - 网站信息架构与 Sitemap 设计（Home / Action Hub / Resources & Tools / Community Forum / About） :contentReference[oaicite:2]{index=2}  
+  - 网站信息架构与 Sitemap 设计（Home / Action Hub / Resources & Tools / Community Forum / About）
   - 品牌视觉与 Style Guide（蓝色系品牌色、字号层级、按钮与卡片组件）
   - JavaScript **动态新闻模块**（News API 调用与卡片渲染）
   - **响应式导航栏与页脚**（Desktop 导航 + Mobile 汉堡菜单）
@@ -35,7 +35,7 @@
 - 客户是一位拥有多家线下门店的创业者，希望将业务扩展到线上  
 - 采用 **Freemium 模式（免费 + 未来付费升级）**：  
   - 当前提供免费的内容与工具  
-  - 保留未来扩展高级功能的空间 :contentReference[oaicite:3]{index=3}  
+  - 保留未来扩展高级功能的空间 
 
 ### 目标用户（Generation Z）
 
@@ -55,7 +55,7 @@
 - 模块包含：
   - 核心 Banner（主视觉 + 号召行动文案）
   - 最新博客 / 活动卡片（Card Layout）
-  - 快速入口：Action Hub / Resources & Tools / Community Forum :contentReference[oaicite:4]{index=4}  
+  - 快速入口：Action Hub / Resources & Tools / Community Forum 
 
 ### 2. 行动中心（Action Hub）
 
@@ -69,7 +69,7 @@
 - 为用户提供：
   - 议题背景文章、行动指南（How-to Guides）
   - 可下载资源（Downloadable Resources）
-  - 交互式小工具（Interactive Tools）的位置结构预留 :contentReference[oaicite:5]{index=5}  
+  - 交互式小工具（Interactive Tools）的位置结构预留 
 
 ### 4. 社区论坛（Community Forum）
 
@@ -89,7 +89,7 @@
 
 ### 品牌定位与 Logo
 
-- Logo：简化的**举拳图标**，象征团结与抗争精神，但避免传统红旗等强意识形态符号，更贴近当代多元社会议题 :contentReference[oaicite:6]{index=6}  
+- Logo：简化的**举拳图标**，象征团结与抗争精神，但避免传统红旗等强意识形态符号，更贴近当代多元社会议题 
 - 设计目标：  
   - 现代、简洁、移动端友好  
   - 在不同分辨率与设备上保持清晰可辨识
@@ -101,7 +101,7 @@
   - H1：40px / 44px
   - H2：32px / 36px
   - Sub-heading：24px / 28px
-  - 正文：18px / 22px :contentReference[oaicite:7]{index=7}  
+  - 正文：18px / 22px 
 
 ### 颜色系统
 
@@ -110,7 +110,7 @@
   - 亮蓝：`#3E6BF2`, `#BDCBF2`（活力、年轻、数字化）  
 - 辅助色：
   - 黑：`#000000` / 白：`#FFFFFF` / 灰：`#DFDFDF`  
-- 高对比度设计以满足 **WCAG 对比度要求**，兼顾可读性与审美 :contentReference[oaicite:8]{index=8}  
+- 高对比度设计以满足 **WCAG 对比度要求**，兼顾可读性与审美  
 
 ### UI 组件
 
@@ -118,7 +118,7 @@
   - Primary / Secondary / Disabled 三种状态  
 - 卡片（Card）组件：
   - 大图 + 标题 + 摘要 + 「Read More」按钮，用于新闻与博客列表  
-- 表单与单选按钮（Radio Button）、Modal 弹窗、上传区域等组件均按 Style Guide 设计 :contentReference[oaicite:9]{index=9}  
+- 表单与单选按钮（Radio Button）、Modal 弹窗、上传区域等组件均按 Style Guide 设计 
 
 ---
 
@@ -126,7 +126,7 @@
 
 ### 1. News API 动态新闻流
 
-- 使用 **JavaScript + Fetch API** 调用 **News API** 获取与社会正义相关的最新新闻 :contentReference[oaicite:10]{index=10}  
+- 使用 **JavaScript + Fetch API** 调用 **News API** 获取与社会正义相关的最新新闻  
 - 将返回数据转成：
   - 新闻卡片：标题 / 发布时间 / 图片 / 描述 / “Read More” 外链  
   - 动态插入 DOM，使首页与 Action Hub 保持“活内容”状态  
@@ -155,7 +155,7 @@
   - 文本与背景颜色高对比度  
   - 图像配置 `alt` 文本，方便屏幕阅读器使用  
   - 标题层级清晰（H1/H2/H3），利于助读工具解析  
-- 内容层面避免刻板印象，体现在文案与图像选择上，强调文化多元性 :contentReference[oaicite:13]{index=13}  
+- 内容层面避免刻板印象，体现在文案与图像选择上，强调文化多元性 
 
 ---
 
@@ -167,7 +167,7 @@
   - 不熟悉异步请求、JSON 数据解析与 DOM 动态渲染  
 - 解决：
   - 将功能拆成小块：请求函数、渲染函数、错误处理  
-  - 借助 ChatGPT 理解复杂代码片段含义，再手动重写与注释 :contentReference[oaicite:14]{index=14}  
+  - 借助 ChatGPT 理解复杂代码片段含义，再手动重写与注释 
 
 ### 2. 响应式与无障碍设计的复杂度
 
@@ -181,7 +181,7 @@
 
 ### 3. 时间管理与模块化开发
 
-- 同期还有其他课程（如 DECO7180）作业，时间压力大 :contentReference[oaicite:16]{index=16}  
+- 同期还有其他课程（如 DECO7180）作业，时间压力大  
 - 应对方式：
   - 将网站拆成模块：导航、新闻区、表单、页脚等分别开发  
   - 每个模块单独测试与文档化，保证可维护性与可扩展性

@@ -48,10 +48,18 @@
   backdrop-filter: blur(10px);
 }
 
-.brand {
+.brand{
   font-weight: 700;
   letter-spacing: -0.02em;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
 }
+
+.brand:hover{
+  opacity: 0.85;
+}
+
 
 .topLinks {
   display: flex;
@@ -100,7 +108,7 @@
   font-weight: 700;
   font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   letter-spacing: -0.06em;
-  font-size: clamp(180px, 28vw, 280px);
+  font-size: clamp(180px, 28vw, 320px);
   white-space: nowrap;
   padding-left: 24px;
 }
@@ -419,6 +427,7 @@
 /* ================== Detail Page ================== */
 .project-detail-header {
   padding: 18px 0 10px;
+  margin-top: 44px;
 }
 
 .project-detail-header h1 {
@@ -510,4 +519,234 @@
 
 .footer a:hover {
   opacity: 0.85;
+}
+
+/* === Skill barrage layer === */
+.skillMarquee{
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  /* ✅ 只在 20%~90% 出现，避免挡 header/左上文案 */
+  top: 20%;
+  height: 70%;
+
+  z-index: 2;            /* 背景字之上 */
+  pointer-events: none;  /* 不挡点击 */
+
+  /* 轻微整体透明：高级感来自“克制” */
+  opacity: 0.85;
+}
+
+/* 每条轨道 */
+.skillLane{
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  /* 每条轨道高度 */
+  height: 56px;
+
+  /* 每条轨道的 y 位置（用 nth-child 分布） */
+}
+
+/* 6 条轨道分布在 20%~90% 内（相对 skillMarquee 容器） */
+.skillLane:nth-child(1){ top: 5%; }
+.skillLane:nth-child(2){ top: 80%; }
+
+.skillLane.xl .skillPill{
+  font-size: 16px;
+  height: 48px;
+  padding: 0 18px;
+  border-radius: 999px;
+  letter-spacing: 0.01em;
+}
+
+/* 轨道内的运动容器：一条长带 */
+.skillTrack{
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  white-space: nowrap;
+
+  will-change: transform;
+  animation-duration: var(--dur, 46s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* 方向：左右交错 */
+.skillLane.left  .skillTrack{ animation-name: skillMoveLeft; }
+.skillLane.right .skillTrack{ animation-name: skillMoveRight; }
+
+@keyframes skillMoveLeft{
+  from{ transform: translateX(0); }
+  to  { transform: translateX(-50%); } /* 因为复制了两遍，-50% 正好无缝 */
+}
+@keyframes skillMoveRight{
+  from{ transform: translateX(-50%); }
+  to  { transform: translateX(0); }
+}
+
+/* Pill 样式：黑白灰、略透明、偏“高级 UI label” */
+.skillPill{
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 14px;
+
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.14);
+  background: rgba(0,0,0,0.06);
+  color: rgba(0,0,0,0.70);
+
+  box-shadow: 0 10px 22px rgba(0,0,0,0.10);
+  backdrop-filter: blur(6px);
+
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* 尺寸层级（你要“稍大”但别太吵） */
+.skillLane.sm .skillPill{ font-size: 13px; height: 30px; padding: 0 12px; }
+.skillLane.md .skillPill{ font-size: 14px; }
+.skillLane.lg .skillPill{ font-size: 16px; height: 38px; padding: 0 16px; }
+
+/* ✅ 层级保证：人像在最顶上不被挡 */
+.heroPortrait{ z-index: 4; }  /* 人像最顶 */
+.heroBgText{ z-index: 1; }    /* 背景字最底（你原来没写也没关系） */
+.heroMeta{ z-index: 5; }      /* 文案比弹幕更顶，避免被挡 */
+
+/* 研究方向行：可交互 */
+.researchWrap{
+  margin-top: 10px;
+  font-size: 16px;
+  color: rgba(0,0,0,0.72);
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.researchLabel{
+  color: rgba(0,0,0,0.55);
+}
+
+.researchLink{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  font-weight: 600;
+  color: rgba(0,0,0,0.76);
+
+  border-bottom: 1px solid rgba(0,0,0,0.18);
+  cursor: help;
+}
+
+.researchLink:hover{
+  color: rgba(0,0,0,0.92);
+  border-bottom-color: rgba(0,0,0,0.34);
+}
+
+.researchHint{
+  font-size: 12px;
+  opacity: 0.7;
+  transform: translateY(-1px);
+}
+
+/* Tooltip 本体：黑白高级感（深色玻璃） */
+.researchTooltip{
+  position: absolute;
+  left: 0;
+  top: calc(100% + 12px);
+
+  width: min(520px, 70vw);
+  padding: 16px 16px 14px;
+
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(12,12,12,0.92);
+  backdrop-filter: blur(10px);
+
+  box-shadow: 0 18px 60px rgba(0,0,0,0.28);
+
+  color: rgba(255,255,255,0.88);
+  line-height: 1.55;
+
+  /* 默认隐藏 */
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+  z-index: 50;
+}
+
+/* hover 显示 */
+.researchLink:hover .researchTooltip{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* 标题区 */
+.ttTitle{
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.95);
+  letter-spacing: -0.01em;
+}
+
+.ttTitleSub{
+  display: inline-block;
+  margin-left: 8px;
+  font-weight: 600;
+  font-size: 12px;
+  color: rgba(255,255,255,0.62);
+}
+
+/* 正文：分段更可读 */
+.ttBody p{
+  margin: 10px 0 0;
+  color: rgba(255,255,255,0.82);
+}
+
+.ttBody b{
+  color: rgba(255,255,255,0.95);
+}
+
+/* 底部关键词标签 */
+.ttTags{
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ttTag{
+  font-size: 12px;
+  color: rgba(255,255,255,0.86);
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.06);
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+
+.embed{
+  margin: 16px 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: rgba(0,0,0,0.04);
+}
+
+.embed iframe{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  display: block;
 }

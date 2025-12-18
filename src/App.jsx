@@ -8,12 +8,23 @@ function App() {
     <div className="app">
       <header className="topBar">
         <div className="topPill">
-          <div className="brand">ZHUOYANG PEI</div>
+          <Link to="/" className="brand">
+            ZHUOYANG PEI
+          </Link>
+
           <div className="topLinks">
-            <a href="mailto:zhuoyang.pei@outlook.com" target="_blank" rel="noreferrer">
+            <a
+              href="mailto:zhuoyang.pei@outlook.com"
+              target="_blank"
+              rel="noreferrer"
+            >
               Email
             </a>
-            <a href="https://github.com/FreyProcyon" target="_blank" rel="noreferrer">
+            <a
+              href="https://github.com/FreyProcyon"
+              target="_blank"
+              rel="noreferrer"
+            >
               GitHub
             </a>
           </div>

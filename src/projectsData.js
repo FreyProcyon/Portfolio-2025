@@ -4,10 +4,9 @@ import wearwellCover from './assets/covers/wearwell.png'
 import wildlifeCover from './assets/covers/explore-wildlife.png'
 import visionCover from './assets/covers/vision-bright.png'
 import socialCover from './assets/covers/social-justice-action-hub.png'
-import footballCover from './assets/covers/stereotypes-in-football.png'
+import footballCover from './assets/covers/stereotypes-in-football.jpg'
 import earlyCover from './assets/covers/early-portfolio-2022-2023.png'
 import stepCover from './assets/covers/step-together.png'
-
 
 
 export const projects = [
@@ -91,7 +90,7 @@ export const projects = [
       '来自前研究生阶段的交互设计、工业设计、建筑设计作品集，展示我不断迭代能力广度的过程。',
     year: '2022–2023',
     tags: ['Interaction Design', 'Industry Design', 'Architecture'],
-    mdFile: null,
+    mdFile: 'early-portfolio-2022-2023.md',
     cover: earlyCover,
     featured: true,
   },

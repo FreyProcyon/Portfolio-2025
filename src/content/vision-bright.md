@@ -16,7 +16,7 @@
 - 现有智能穿戴设备常见痛点：  
   - 操作流程复杂、交互不直观  
   - 在教室、图书馆、实验室等安静环境下，**语音控制社交负担大**  
-  - AR 叠加信息容易造成视觉噪音和注意力分散:contentReference[oaicite:1]{index=1}  
+  - AR 叠加信息容易造成视觉噪音和注意力分散
 
 Vision Bright 的目标是：  
 > 通过眼动 + 微手势 + 低干扰 HUD（Heads-Up Display）设计，  
@@ -30,7 +30,7 @@ Vision Bright 的目标是：
 
 - **用户研究负责人（User Research Lead）**
   - 设计问卷与半结构化访谈提纲  
-  - 组织数据收集与整理，构建目标用户画像与典型使用场景:contentReference[oaicite:2]{index=2}  
+  - 组织数据收集与整理，构建目标用户画像与典型使用场景
 - **交互流程与多模态设计（Interaction & Multimodal Design）**
   - 设计基于 **眼动、手势与语音** 的组合交互流程  
   - 定义“凝视选择（gaze selection）”“眨眼拍照（blink to capture）”“微手势确认（micro-gesture confirm）”等核心交互模式
@@ -47,17 +47,17 @@ Vision Bright 的目标是：
 
 在实习早期，我主导了一轮 **用户研究（User-Centred Research）**，结合：
 
-- **在线问卷（Survey）**：共收集 **39 份有效样本**，主要为 18–24 岁大学生与部分年轻从业者，聚焦他们在日常学习/工作中使用智能手表、智能眼镜等穿戴设备的习惯、痛点与期待:contentReference[oaicite:3]{index=3}  
+- **在线问卷（Survey）**：共收集 **39 份有效样本**，主要为 18–24 岁大学生与部分年轻从业者，聚焦他们在日常学习/工作中使用智能手表、智能眼镜等穿戴设备的习惯、痛点与期待
 - **半结构化访谈（Semi-structured Interviews）**：共访谈 10 位参与者，涵盖本科生、研究生、实验室助理、内容创作者等，深入了解：  
   - 如何在真实场景中使用或想象使用智能穿戴  
   - 对语音 / 手势 / 眼动等交互方式的偏好与顾虑  
-  - 对“多任务切换、专注维持、安静场景操作”的真实需求:contentReference[oaicite:4]{index=4}  
+  - 对“多任务切换、专注维持、安静场景操作”的真实需求
 
 > 🖼️ *插图占位：在此插入一张「问卷结果可视化图（年龄、职业、设备使用频率）」或 Miro Affinity Diagram 截图，用于展示用户研究规模与主题聚类。*
 
 ### 关键痛点（Key Pain Points）
 
-根据问卷 + 访谈 + 产品评测梳理，我参与总结了以下核心主题：:contentReference[oaicite:5]{index=5}  
+根据问卷 + 访谈 + 产品评测梳理，我参与总结了以下核心主题： 
 
 - **Workflow Efficiency（工作流效率）**  
   - 在实验室、写论文、写代码时频繁在不同 App / 屏幕间切换，容易“断线”
@@ -95,7 +95,7 @@ Vision Bright 的目标是：
 
 ### 多模态输入设计（Multimodal Interaction）
 
-在实习期间，我参与定义并优化了以下几类输入通道：:contentReference[oaicite:6]{index=6}  
+在实习期间，我参与定义并优化了以下几类输入通道：
 
 - **眼动与凝视（Gaze / Dwell）**
   - 短停留：预览或高亮目标  
@@ -105,13 +105,13 @@ Vision Bright 的目标是：
 - **语音指令（Voice Command）**
   - 作为在私人环境中的补充，用于模式切换、复杂命令输入
 - **HUD 面板（HUD Task Panel）**
-  - 顶部或侧边浮动信息区域，用于显示当前任务、提醒、导航等轻量信息:contentReference[oaicite:7]{index=7}  
+  - 顶部或侧边浮动信息区域，用于显示当前任务、提醒、导航等轻量信息
 
 > 🖼️ *插图占位：插入一张「概念结构图」，展示 Input Channels（Eyes / Gestures / Voice）→ HUD / AR Overlay → Logging/Analytics 的关系。*
 
 ### 典型 HUD 结构（HUD Layout）
 
-我在原型中采用“**桌面类 HUD（Desktop-like HUD）+ 浮动工具条**”的隐喻设计：:contentReference[oaicite:8]{index=8}  
+我在原型中采用“**桌面类 HUD（Desktop-like HUD）+ 浮动工具条**”的隐喻设计：
 
 - 右上角：任务状态、当前模式、时间  
 - 视野边缘：浮动的 Quick Actions（拍照、识别、阅读模式切换）  
@@ -129,7 +129,7 @@ Vision Bright 的目标是：
 - 痛点：老师讲解思路快、板书密集，拍照手机太打扰，手写跟不上  
 - Vision Bright 提供：
   - **眨眼拍照（Blink to Capture）**  
-  - 自动按课程/时间/地点为截图打标签，课后在 Timeline 中回顾:contentReference[oaicite:9]{index=9}  
+  - 自动按课程/时间/地点为截图打标签，课后在 Timeline 中回顾
 
 > 🖼️ *插图占位：插入“课堂场景 HUD 截图”，例如：黑板内容 + HUD 上显示“Captured: Design Class – Week 5”。*
 
@@ -139,7 +139,7 @@ Vision Bright 的目标是：
 - 痛点：频繁在论文、邮箱、资料间切换，经常忘了上一步做到哪里  
 - Vision Bright 提供：
   - 每次任务切换前后自动记录“关键视图 + 位置”  
-  - 再次回到任务时，在 HUD 提示“你上次看到这里”，支持一键回溯:contentReference[oaicite:10]{index=10}  
+  - 再次回到任务时，在 HUD 提示“你上次看到这里”，支持一键回溯
 
 ### 场景三：安静环境下的“无声操作”
 
@@ -147,7 +147,7 @@ Vision Bright 的目标是：
 - 痛点：不愿在安静环境中对设备说话，语音控制社交负担大  
 - Vision Bright 提供：
   - 凝视单词 + 轻触镜腿 → 浮窗显示释义  
-  - 眨眼翻页 / 短停留高亮段落，整个过程不需要发声:contentReference[oaicite:11]{index=11}  
+  - 眨眼翻页 / 短停留高亮段落，整个过程不需要发声
 
 ### 场景四：实验室 / 户外的 AR 辅助操作
 
@@ -155,7 +155,7 @@ Vision Bright 的目标是：
 - 痛点：双手被占用时难以查步骤 / 识别物种  
 - Vision Bright 提供：
   - AR 步骤条（实验模式）：在视野侧边显示下一步操作，完成后做一个微手势确认  
-  - 物种识别模式：凝视目标 + 确认 → 显示名称、危险等级和简短说明:contentReference[oaicite:12]{index=12}  
+  - 物种识别模式：凝视目标 + 确认 → 显示名称、危险等级和简短说明
 
 > 🖼️ *插图占位：插入“实验室 / 户外 AR overlay”界面图，如试管旁边的步骤提示或自然场景中的物种识别卡片。*
 
@@ -163,7 +163,7 @@ Vision Bright 的目标是：
 
 ## 💻 原型实现与技术栈（Prototype & Tech Stack）
 
-在原型实现阶段，我参与了 **高保真交互原型制作**，并基于 **React.js** 实现了一个网页端模拟界面：:contentReference[oaicite:13]{index=13}  
+在原型实现阶段，我参与了 **高保真交互原型制作**，并基于 **React.js** 实现了一个网页端模拟界面：
 
 - **技术栈**
   - React.js（组件化实现 HUD 与各模式视图）
@@ -187,7 +187,7 @@ Vision Bright 的目标是：
 
 ## 🧠 设计原则与无障碍考虑（HCI & Accessibility）
 
-在设计过程中，我系统性地参考并应用了多项 **HCI 经典原则** 与 **无障碍设计（Accessibility）** 要求：:contentReference[oaicite:14]{index=14}  
+在设计过程中，我系统性地参考并应用了多项 **HCI 经典原则** 与 **无障碍设计（Accessibility）** 要求： 
 
 - **Fitts’s Law**：通过眼动与微手势缩短“指向目标 → 完成操作”的路径  
 - **Miller’s Law**：HUD 中同时呈现的信息控制在 3–5 组，避免短期记忆过载  

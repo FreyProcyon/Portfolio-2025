@@ -70,9 +70,52 @@ function ProjectDetail() {
         {loading && <p>Loading…</p>}
 
         {!loading && mdKey && mdModules[mdKey] && (
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {mdText}
-          </ReactMarkdown>
+          <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+          components={{
+            a({ href, children, ...props }) {
+              const text = Array.isArray(children)
+                ? children.map((c) => (typeof c === 'string' ? c : '')).join('')
+                : (typeof children === 'string' ? children : '')
+                const isPdf = href.toLowerCase().endsWith('.pdf')
+
+                if (isPdf) {
+                  return (
+                    <div className="embed embed-pdf">
+                      <iframe
+                        src={href}
+                        title="PDF"
+                        loading="lazy"
+                      />
+                    </div>
+                  )
+                }
+              
+              const label = text.trim()
+              if (label.startsWith('embed:')) {
+                const type = label.slice('embed:'.length).trim()
+                return (
+                  <div className={`embed embed-${type}`}>
+                    <iframe
+                      src={href}
+                      title={type}
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                )
+              }
+            
+              return <a href={href} {...props} target="_blank" rel="noreferrer">{children}</a>
+            }
+            
+            ,
+          }}
+        >
+          {mdText}
+        </ReactMarkdown>
+        
         )}
 
         {!loading && (!mdKey || !mdModules[mdKey]) && (
