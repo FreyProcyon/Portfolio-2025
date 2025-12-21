@@ -1,12 +1,12 @@
 // src/projectsData.js
-import lunarCover from './assets/covers/lunar-construction-simulator.png'
-import wearwellCover from './assets/covers/wearwell.png'
-import wildlifeCover from './assets/covers/explore-wildlife.png'
-import visionCover from './assets/covers/vision-bright.png'
-import socialCover from './assets/covers/social-justice-action-hub.png'
-import footballCover from './assets/covers/stereotypes-in-football.jpg'
-import earlyCover from './assets/covers/early-portfolio-2022-2023.png'
-import stepCover from './assets/covers/step-together.png'
+import lunarCover from './assets/covers/lunar-construction-simulator.webp'
+import wearwellCover from './assets/covers/wearwell.webp'
+import wildlifeCover from './assets/covers/explore-wildlife.webp'
+import visionCover from './assets/covers/vision-bright.webp'
+import socialCover from './assets/covers/social-justice-action-hub.webp'
+import footballCover from './assets/covers/stereotypes-in-football.webp'
+import earlyCover from './assets/covers/early-portfolio-2022-2023.webp'
+import stepCover from './assets/covers/step-together.webp'
 
 
 export const projects = [
