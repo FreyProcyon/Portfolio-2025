@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import portraitImg from "../assets/透明底.png";
+import portraitImg from "../assets/portrait.png";
 
 function Hero() {
   const [y, setY] = useState(0);
