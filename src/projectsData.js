@@ -7,15 +7,15 @@ import socialCover from './assets/covers/social-justice-action-hub.webp'
 import footballCover from './assets/covers/stereotypes-in-football.webp'
 import earlyCover from './assets/covers/early-portfolio-2022-2023.webp'
 import stepCover from './assets/covers/step-together.webp'
-
+import aiAssistHealthcareCover from './assets/covers/aiAssistHealthcareCover.webp'
 
 export const projects = [
   {
     slug: 'lunar-construction-simulator',
     title: '月球建造模拟 – 3D 风格 VR 建模工具',
     shortDescription:
-      '基于Meta Quest开发的Minecraft风格 VR 建模工具，模拟工程师通过 VR 远程在月面规划与搭建结构。',
-    year: '2025',
+      '基于Meta SDK + Unity开发的Minecraft风格 VR 建模工具，模拟工程师通过 VR 远程在月面规划与搭建结构。',
+    year: '2025.7-2025.10',
     tags: ['XR Interaction', 'Unity 3D', 'VR'],
     mdFile: 'Lunar_Construction_Simulator.md',
     cover: lunarCover,
@@ -25,8 +25,8 @@ export const projects = [
     slug: 'wearwell',
     title: 'WearWell – 社交化跑步伙伴平台',
     shortDescription:
-      '围绕“找跑步伙伴 + 约时间太麻烦”设计的社交跑步平台，串起“穿戴数据 → 跑步档案 → 伙伴匹配 → 共同目标”。',
-    year: '2025',
+      '围绕“找跑步伙伴 + 约时间太麻烦”设计的社交跑步平台及配套可穿戴设备原型，串起“穿戴数据 → 跑步档案 → 伙伴匹配 → 共同目标”。',
+    year: '2025.8-2025.11',
     tags: ['Wearable deviece', 'HTML+CSS', 'Javascript'],
     mdFile: 'WearWell.md',
     cover: wearwellCover,
@@ -36,53 +36,63 @@ export const projects = [
     slug: 'step-together',
     title: 'Step Together – 公交站互动地砖游戏',
     shortDescription:
-      '围绕 UQ Lakes 公交站候车体验设计的团队协作地砖游戏，用互动游戏增进弱社交，同时通过全场变红和屏幕提示防止错过巴士。',
-    year: '2025',
+      '围绕 UQ Lakes 公交站候车体验设计的团队协作地砖游戏及react native+Expo多端原型，用互动游戏增进弱社交，同时通过全场变红和声音提示防止错过巴士。',
+    year: '2025.3-2025.5',
     tags: ['React native', 'Expo', 'Javascript'],
     mdFile: 'step-together.md',
     cover: stepCover,
+  },
+  {
+    slug: 'stereotypes-in-football',
+    title: 'Stereotypes in Football – 足球位置刻板印象数据可视化',
+    shortDescription:
+      '用 Flourish 做的一套交互数据故事，探讨“某国擅长某个位置”的足球刻板印象与真实数据是否一致。从多源数据清洗出国家–位置–薪资结构，设计了四个互相串联的交互图表。',
+    year: '2025.4-2025.6',
+    tags: ['Data Storytelling'],
+    mdFile: 'Stereotypes-in-Football.md',
+    cover: footballCover,
+    featured: true,
+  },
+  {
+    slug: 'vision-bright',
+    title: 'Vision Bright – AR 智能眼镜交互端原型',
+    shortDescription:
+      '为集成眼动追踪、微手势与语音助手的 AR 智能眼镜设计交互界面，并用React+vite制作可交互原型用于用户测试迭代，设计面向室内工作学习和室外科研实践等多任务场景，强调低干扰的信息呈现。',
+    year: '2025.1-2025.2',
+    tags: ['AR', 'React', 'HCI Research'],
+    mdFile: 'vision-bright.md',
+    cover: visionCover,
   },
   {
     slug: 'explore-wildlife',
     title: 'Explore & Conserve Wildlife – 野生动物探索与保护平台',
     shortDescription:
       '在澳大利亚昆士兰公开生态数据基础上做的交互式网页平台，用户可以在地图上查看当地物种分布、了解保护状态，并通过上传目击记录参与公共科研贡献。',
-    year: '2024',
+    year: '2024.8-2024.10',
     tags: ['HTML+CSS', 'Javascript', 'Interaction Design'],
     mdFile: 'explore-wildlife.md',
     cover: wildlifeCover,
-  },
-  {
-    slug: 'vision-bright',
-    title: 'Vision Bright – AR 智能眼镜交互端原型',
-    shortDescription:
-      '为集成眼动追踪、微手势与语音助手的 AR 智能眼镜设计交互界面，面向室内工作学习和室外科研实践等多任务场景，强调低干扰的信息呈现。',
-    year: '2024',
-    tags: ['AR', 'React', 'HCI Research'],
-    mdFile: 'vision-bright.md',
-    cover: visionCover,
   },
   {
     slug: 'social-justice-action-hub',
     title: 'Social Justice Action Hub – 青年社会议题行动平台',
     shortDescription:
       '一个面向 Z 世代的社会议题网站概念，用新闻API聚合最新气候行动、反歧视等内容，并用清晰的信息架构和响应式设计支持行动指南与资源查找。',
-    year: '2024',
+    year: '2024.8-2024.10',
     tags: ['HTML+CSS', 'Javascript', 'Social Computing'],
     mdFile: 'social-justice-action-hub.md',
     cover: socialCover,
   },
   {
-    slug: 'stereotypes-in-football',
-    title: 'Stereotypes in Football – 足球位置刻板印象数据可视化',
+    slug: 'ai-assist-healthcare',
+    title: 'AI-Assist Healthcare – AI 辅助医疗体验应用',
     shortDescription:
-      '用 Flourish 做的一套交互数据故事，探讨“某国擅长某个位置”的足球刻板印象与真实数据是否一致。从多源数据清洗出国家–位置–薪资结构，设计了四个互相串联的交互图表（地图、热力图、气泡图、Sankey）',
-    year: '2025',
-    tags: ['Data Storytelling'],
-    mdFile: 'Stereotypes-in-Football.md',
-    cover: footballCover,
-    featured: true,
-  },
+      '一个面向中国就医场景的患者中心应用概念，聚焦“流程繁琐、信息不透明、沟通障碍”等痛点，结合 AI 与NLP简化挂号/就诊流程并用自然语言交互提升沟通效率与个性化体验。',
+    year: '2023.07–2023.11',
+    tags: ['UI & UX', 'Product Design', 'User Research'],
+    mdFile: 'aiAssistHealthcareCover.md',
+    cover: aiAssistHealthcareCover,
+  },  
   {
     slug: 'early-portfolio-2022-2023',
     title: 'Early Portfolio (2022–2023)',

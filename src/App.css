@@ -13,7 +13,7 @@
 }
 
 .container {
-  max-width: 1080px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 28px 20px 36px;
 }
@@ -198,7 +198,7 @@
 
 /* 让内部内容保持 1080 阅读宽度（原本 max-width 在 .carousel 上，现在挪到 shell） */
 .carousel-shell {
-  max-width: 1080px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 20px;
 
