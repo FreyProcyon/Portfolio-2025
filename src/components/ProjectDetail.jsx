@@ -4,9 +4,24 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { projects } from '../projectsData'
 
-// 1) 让 Vite 扫描 src/content 下所有 md 文件，并以“raw 文本”方式导入
-//    as: 'raw' 表示导入结果是一个 string（markdown 原文）
+// 让 Vite 扫描 src/content 下所有 md 文件，并以“raw 文本”方式导入
 const mdModules = import.meta.glob('../content/*.md', { as: 'raw' })
+
+function normalizeStaticPath(path = '') {
+  let s = path.trim()
+
+  // images
+  if (s.startsWith('../images/')) s = 'images/' + s.slice('../images/'.length)
+  if (s.startsWith('./images/')) s = 'images/' + s.slice('./images/'.length)
+  if (s.startsWith('/images/')) s = 'images/' + s.slice('/images/'.length)
+
+  // pdfs
+  if (s.startsWith('../pdfs/')) s = 'pdfs/' + s.slice('../pdfs/'.length)
+  if (s.startsWith('./pdfs/')) s = 'pdfs/' + s.slice('./pdfs/'.length)
+  if (s.startsWith('/pdfs/')) s = 'pdfs/' + s.slice('/pdfs/'.length)
+
+  return s
+}
 
 function ProjectDetail() {
   const { slug } = useParams()
@@ -15,7 +30,6 @@ function ProjectDetail() {
   const [mdText, setMdText] = useState('')
   const [loading, setLoading] = useState(false)
 
-  // 2) 根据项目的 mdFile 计算它在 mdModules 里的 key（路径必须匹配 glob 返回的 key）
   const mdKey = useMemo(() => {
     if (!project?.mdFile) return null
     return `../content/${project.mdFile}`
@@ -27,16 +41,26 @@ function ProjectDetail() {
     async function loadMarkdown() {
       if (!mdKey || !mdModules[mdKey]) {
         setMdText('')
+        setLoading(false)
         return
       }
 
       setLoading(true)
-      const loader = mdModules[mdKey]   // loader 是一个函数：() => Promise<string>
-      const text = await loader()
 
-      if (!cancelled) {
-        setMdText(text)
-        setLoading(false)
+      try {
+        const loader = mdModules[mdKey]
+        const text = await loader()
+
+        if (!cancelled) {
+          setMdText(text)
+          setLoading(false)
+        }
+      } catch (error) {
+        if (!cancelled) {
+          console.error('Failed to load markdown:', error)
+          setMdText('')
+          setLoading(false)
+        }
       }
     }
 
@@ -71,94 +95,103 @@ function ProjectDetail() {
 
         {!loading && mdKey && mdModules[mdKey] && (
           <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
-          components={{
-            // ✅ 1) 修复图片路径：/images/* -> BASE_URL + images/*
-            img({ src = '', alt = '', ...props }) {
-              const base = import.meta.env.BASE_URL
-            
-              // 统一把各种写法都归一到 /Portfolio-2025/images/xxx
-              let s = src.trim()
-              if (s.startsWith('../images/')) s = 'images/' + s.slice('../images/'.length)
-              if (s.startsWith('./images/')) s = 'images/' + s.slice('./images/'.length)
-              if (s.startsWith('/images/')) s = 'images/' + s.slice('/images/'.length)
-            
-              const fixedSrc = s.startsWith('images/') ? `${base}${s}` : s
-              return <img src={fixedSrc} alt={alt} loading="lazy" {...props} />
-            }
-            ,
-        
-            // ✅ 2) 链接分流：站内路由 / 资源 / 外链
-            a({ href, children, ...props }) {
-              const safeHref = (href ?? '').trim()
-              const base = import.meta.env.BASE_URL
-        
-              // 2.1 PDF：iframe 嵌入（同时修复 /docs 或 /xxx.pdf 的 base）
-              const isPdf = safeHref.toLowerCase().endsWith('.pdf')
-              if (isPdf) {
-                const pdfSrc =
-                  safeHref.startsWith('/') ? `${base}${safeHref.slice(1)}` : safeHref
-        
+            remarkPlugins={[remarkGfm]}
+            components={{
+              img({ src = '', alt = '', ...props }) {
+                const base = import.meta.env.BASE_URL
+                const normalizedSrc = normalizeStaticPath(src)
+                const fixedSrc = normalizedSrc.startsWith('images/')
+                  ? `${base}${normalizedSrc}`
+                  : normalizedSrc
+
                 return (
-                  <div className="embed embed-pdf">
-                    <iframe src={pdfSrc} title="PDF" loading="lazy" />
-                  </div>
+                  <img
+                    src={fixedSrc}
+                    alt={alt}
+                    loading="lazy"
+                    {...props}
+                  />
                 )
-              }
-        
-              // 2.2 你的 embed:xxx 机制（同样修复 base）
-              const text = Array.isArray(children)
-                ? children.map((c) => (typeof c === 'string' ? c : '')).join('')
-                : typeof children === 'string'
-                  ? children
-                  : ''
-              const label = text.trim()
-        
-              if (label.startsWith('embed:')) {
-                const type = label.slice('embed:'.length).trim()
-                const embedSrc =
-                  safeHref.startsWith('/') ? `${base}${safeHref.slice(1)}` : safeHref
-        
+              },
+
+              a({ href, children, ...props }) {
+                const safeHref = (href ?? '').trim()
+                const base = import.meta.env.BASE_URL
+                const normalizedHref = normalizeStaticPath(safeHref)
+
+                // PDF：嵌入显示
+                const isPdf = normalizedHref.toLowerCase().endsWith('.pdf')
+                if (isPdf) {
+                  const pdfSrc = normalizedHref.startsWith('pdfs/')
+                    ? `${base}${normalizedHref}`
+                    : normalizedHref
+
+                  return (
+                    <div className="embed embed-pdf">
+                      <iframe
+                        src={pdfSrc}
+                        title="PDF"
+                        loading="lazy"
+                      />
+                    </div>
+                  )
+                }
+
+                // embed:xxx 机制
+                const text = Array.isArray(children)
+                  ? children.map((c) => (typeof c === 'string' ? c : '')).join('')
+                  : typeof children === 'string'
+                    ? children
+                    : ''
+
+                const label = text.trim()
+
+                if (label.startsWith('embed:')) {
+                  const type = label.slice('embed:'.length).trim()
+                  const embedSrc =
+                    normalizedHref.startsWith('images/') || normalizedHref.startsWith('pdfs/')
+                      ? `${base}${normalizedHref}`
+                      : normalizedHref
+
+                  return (
+                    <div className={`embed embed-${type}`}>
+                      <iframe
+                        src={embedSrc}
+                        title={type}
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
+                  )
+                }
+
+                // 站内项目路由
+                if (safeHref.startsWith('/projects/')) {
+                  return <Link to={safeHref}>{children}</Link>
+                }
+
+                // 站点静态资源
+                if (normalizedHref.startsWith('images/') || normalizedHref.startsWith('pdfs/')) {
+                  const fixedHref = `${base}${normalizedHref}`
+                  return (
+                    <a href={fixedHref} {...props} target="_blank" rel="noreferrer">
+                      {children}
+                    </a>
+                  )
+                }
+
+                // 外链
                 return (
-                  <div className={`embed embed-${type}`}>
-                    <iframe
-                      src={embedSrc}
-                      title={type}
-                      loading="lazy"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
-                  </div>
-                )
-              }
-        
-              // 2.3 站内项目路由：/projects/... -> Link（HashRouter 下也正确）
-              if (safeHref.startsWith('/projects/')) {
-                return <Link to={safeHref}>{children}</Link>
-              }
-        
-              // 2.4 站点静态资源：/images/* 或 /docs/* -> 自动加 BASE_URL
-              if (safeHref.startsWith('/images/') || safeHref.startsWith('/docs/')) {
-                const fixedHref = `${base}${safeHref.slice(1)}`
-                return (
-                  <a href={fixedHref} {...props} target="_blank" rel="noreferrer">
+                  <a href={safeHref} {...props} target="_blank" rel="noreferrer">
                     {children}
                   </a>
                 )
-              }
-        
-              // 2.5 其他情况：外链（含 http/https），新标签打开
-              return (
-                <a href={safeHref} {...props} target="_blank" rel="noreferrer">
-                  {children}
-                </a>
-              )
-            },
-          }}
-        >
-          {mdText}
-        </ReactMarkdown>
-        
+              },
+            }}
+          >
+            {mdText}
+          </ReactMarkdown>
         )}
 
         {!loading && (!mdKey || !mdModules[mdKey]) && (
