@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import viteImagemin from 'vite-plugin-imagemin'
 
 export default defineConfig({
-  base: '/',
+  base: process.env.GITHUB_ACTIONS ? '/Portfolio-2025/' : '/',
 
   plugins: [
     react(),
